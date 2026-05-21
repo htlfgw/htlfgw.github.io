@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海特洛市发展与异象改革委员会</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", SimHei, sans-serif;
+        }
+        body {
+            background-color: #f4f7fa;
+            color: #333;
+            line-height: 1.8;
+        }
+        /* 顶部栏 */
+        .top-bar {
+            background: #00529B;
+            color: #fff;
+            text-align: center;
+            padding: 16px 0;
+        }
+        .top-bar h1 {
+            font-size: 26px;
+            font-weight: normal;
+        }
+        .top-bar p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        /* 导航栏 */
+        .main-nav {
+            background: #0066B3;
+            border-bottom: 3px solid #004477;
+        }
+        .nav-list {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        .nav-list li a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 15px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .nav-list li a:hover {
+            background: #004477;
+        }
+        .nav-list li a.active {
+            background: #004477;
+        }
+        /* 主体布局 */
+        .container {
+            max-width: 1250px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 72% 26%;
+            gap: 2%;
+        }
+        /* 模块盒子 */
+        .box {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px #dbe4ec;
+            margin-bottom: 22px;
+            overflow: hidden;
+        }
+        .box-title {
+            background: #00529B;
+            color: #fff;
+            padding: 11px 18px;
+            font-size: 17px;
+        }
+        .box-content {
+            padding: 18px;
+        }
+        /* 新闻列表 */
+        .news-list {
+            list-style: none;
+        }
+        .news-list li {
+            padding: 10px 0;
+            border-bottom: 1px dotted #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .news-list a {
+            color: #222;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .news-list a:hover {
+            color: #00529B;
+            text-decoration: underline;
+        }
+        .date {
+            color: #777;
+            font-size: 13px;
+        }
+        /* 交互按钮 */
+        .service-btn {
+            display: block;
+            background: #0066B3;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 8px 0;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
+        .service-btn:hover {
+            background: #004477;
+        }
+        /* 弹窗样式 */
+        .popup-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .popup-box {
+            background: #fff;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .popup-head {
+            background: #00529B;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close-btn {
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .popup-body {
+            padding: 20px;
+        }
+        .popup-body input,.popup-body textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        /* 底部 */
+        footer {
+            background: #003366;
+            color: #cce0f5;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+        .tip-text {
+            margin-top: 18px;
+            color: #ffbbbb;
+            font-weight: 500;
+        }
+        /* 页面切换内容默认隐藏 */
+        .page-content {
+            display: none;
+        }
+        .page-content.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部标题 -->
+<div class="top-bar">
+    <h1>海特洛市发展与异象改革委员会</h1>
+    <p>统筹发展规划 · 深化异象改革 · 调控经济运行 · 服务城市建设</p>
+</div>
+
+<!-- 导航菜单 点击切换页面 -->
+<div class="main-nav">
+    <ul class="nav-list">
+        <li><a class="nav-item active" data-page="home">首页</a></li>
+        <li><a class="nav-item" data-page="org">机构概况</a></li>
+        <li><a class="nav-item" data-page="policy">政策法规</a></li>
+        <li><a class="nav-item" data-page="plan">发展规划</a></li>
+        <li><a class="nav-item" data-page="project">项目审批</a></li>
+        <li><a class="nav-item" data-page="complain">投诉举报</a></li>
+    </ul>
+</div>
+
+<!-- 首页内容 -->
+<div class="container page-content show" id="home">
+    <div class="main-left">
+        <div class="box">
+            <div class="box-title">最新通知公告</div>
+            <div class="box-content">
+                <ul class="news-list">
+                    <li><a onclick="openDetail('2026年度全市重点建设项目申报')">2026年度全市重点建设项目申报工作通知</a><span class="date">2026-05-21</span></li>
+                    <li><a onclick="openDetail('异象产业改革试点工作')">关于异象产业改革试点工作推进公示</a><span class="date">2026-05-20</span></li>
+                    <li><a onclick="openDetail('物价稳价保供专项')">全市物价稳价保供专项工作通知</a><span class="date">2026-05-18</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-title">政策文件公示</div>
+            <div class="box-content">
+                <ul class="news-list">
+                    <li><a onclick="openDetail('异象经济改革管理办法')">海特洛市异象经济改革管理办法（全文）</a><span class="date">2026-05-10</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-right">
+        <div class="box">
+            <div class="box-title">政务办事大厅</div>
+            <div class="box-content">
+                <button class="service-btn" onclick="alert('跳转项目申报页面')">项目在线申报</button>
+                <button class="service-btn" onclick="alert('跳转进度查询页面')">审批进度查询</button>
+                <button class="service-btn" onclick="alert('跳转文件下载页面')">政策文件下载</button>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-title">投诉举报入口</div>
+            <div class="box-content">
+                <button class="service-btn" onclick="openComplain()">立即提交投诉</button>
+                <button class="service-btn" onclick="alert('查询举报处理进度')">举报进度查询</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 机构概况页面 -->
+<div class="container page-content" id="org">
+    <div class="main-left">
+        <div class="box">
+            <div class="box-title">机构职能介绍</div>
+            <div class="box-content">
+                <p>1. 拟定全市经济社会发展中长期规划；</p>
+                <p>2. 统筹固定资产投资、项目立项审批备案；</p>
+                <p>3. 监测调控全市整体经济运行态势；</p>
+                <p>4. 监管市场物价、行政事业收费标准；</p>
+                <p>5. 推进异象领域创新改革与体制优化；</p>
+                <p>6. 受理市民咨询、投诉、意见反馈工作。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 政策法规页面 -->
+<div class="container page-content" id="policy">
+    <div class="main-left">
+        <div class="box">
+            <div class="box-title">现行有效政策法规</div>
+            <div class="box-content">
+                <ul class="news-list">
+                    <li><a onclick="openDetail('城乡发展统筹条例')">城乡发展统筹管理条例</a><span class="date">2026-04-01</span></li>
+                    <li><a onclick="openDetail('项目投资管理细则')">项目投资备案管理实施细则</a><span class="date">2026-03-15</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 发展规划页面 -->
+<div class="container page-content" id="plan">
+    <div class="main-left">
+        <div class="box">
+            <div class="box-title">城市发展规划文件</div>
+            <div class="box-content">
+                <ul class="news-list">
+                    <li><a onclick="openDetail">全市五年经济发展总体规划</a><span class="date">2026-01-20</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 项目审批页面 -->
+<div class="container page-content" id="project">
+    <div class="main-left">
+        <div class="box">
+            <div class="box-title">项目审批办事指南</div>
+            <div class="box-content">
+                <p>1. 线上提交项目申请材料</p>
+                <p>2. 工作人员初审资料</p>
+                <p>3. 现场核验与评审</p>
+                <p>4. 审批办结公示结果</p>
+                <br>
+                <button class="service-btn" onclick="alert('进入项目申报表单')">开始申报项目</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 投诉举报页面 -->
+<div class="container page-content" id="complain">
+    <div class="main-left">
+        <div class="box">
+            <div class="box-title">投诉举报须知</div>
+            <div class="box-content">
+                <p>1. 如实填写个人信息与举报内容</p>
+                <p>2. 违规物价、项目问题、服务问题均可举报</p>
+                <p>3. 恶意虚假举报将不予受理</p>
+                <br>
+                <button class="service-btn" onclick="openComplain()">填写投诉表单</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 公告详情弹窗 -->
+<div class="popup-mask" id="detailPopup">
+    <div class="popup-box">
+        <div class="popup-head">
+            <span id="detailTitle">公告详情</span>
+            <span class="close-btn" onclick="closePopup()">×</span>
+        </div>
+        <div class="popup-body">
+            <p id="detailContent">此处展示完整公告正文内容，包含政策要求、执行时间、相关规定、申报条件等详细信息。</p>
+        </div>
+    </div>
+</div>
+
+<!-- 投诉表单弹窗 -->
+<div class="popup-mask" id="complainPopup">
+    <div class="popup-box">
+        <div class="popup-head">
+            <span>投诉举报表单</span>
+            <span class="close-btn" onclick="closeComplainPopup()">×</span>
+        </div>
+        <div class="popup-body">
+            <input type="text" placeholder="请填写您的姓名">
+            <input type="text" placeholder="联系手机号码">
+            <textarea rows="4" placeholder="详细描述投诉举报问题"></textarea>
+            <button class="service-btn" onclick="submitComplain()">提交投诉</button>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer>
+    <p>海特洛市发展与异象改革委员会 版权所有 ©2026</p>
+    <p>地址：海特洛市中央大道1号政务中心A座 | 政务服务热线：010-12345678</p>
+    <p class="tip-text">温馨提示：本站所有内容均为网络娱乐创意创作，纯属虚拟模拟，切勿当真，与现实任何政府机构、部门、单位无任何关联。</p>
+</footer>
+
+<script>
+// 导航页面切换
+const navItems = document.querySelectorAll('.nav-item');
+const pages = document.querySelectorAll('.page-content');
+navItems.forEach(item=>{
+    item.addEventListener('click',function(){
+        let pageId = this.getAttribute('data-page');
+        navItems.forEach(nav=>nav.classList.remove('active'));
+        this.classList.add('active');
+        pages.forEach(page=>page.classList.remove('show'));
+        document.getElementById(pageId).classList.add('show');
+    })
+})
+
+// 打开公告详情
+function openDetail(title){
+    document.getElementById('detailTitle').innerText = title;
+    document.getElementById('detailPopup').style.display = 'flex';
+}
+// 关闭详情弹窗
+function closePopup(){
+    document.getElementById('detailPopup').style.display = 'none';
+}
+
+// 打开投诉弹窗
+function openComplain(){
+    document.getElementById('complainPopup').style.display = 'flex';
+}
+// 关闭投诉弹窗
+function closeComplainPopup(){
+    document.getElementById('complainPopup').style.display = 'none';
+}
+
+// 提交投诉提示
+function submitComplain(){
+    alert('投诉提交成功！工作人员将尽快核查处理');
+    closeComplainPopup();
+}
+</script>
+</body>
+</html>

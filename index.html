@@ -16,21 +16,20 @@
             color: #333;
             line-height: 1.8;
         }
-        /* 顶部栏 */
+        /* 顶部头部 */
         .top-bar {
             background: #00529B;
             color: #fff;
             text-align: center;
-            padding: 16px 0;
+            padding: 20px 10px;
         }
         .top-bar h1 {
-            font-size: 26px;
-            font-weight: normal;
+            font-size: 24px;
+            margin-bottom: 8px;
         }
         .top-bar p {
-            font-size: 14px;
             opacity: 0.9;
-            margin-top: 4px;
+            font-size: 14px;
         }
         /* 导航栏 */
         .main-nav {
@@ -38,38 +37,31 @@
             border-bottom: 3px solid #004477;
         }
         .nav-list {
-            max-width: 1250px;
-            margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             list-style: none;
         }
-        .nav-list li a {
-            display: block;
+        .nav-item {
+            padding: 15px 22px;
             color: #fff;
-            text-decoration: none;
-            padding: 15px 20px;
+            cursor: pointer;
             font-size: 15px;
             transition: 0.2s;
-            cursor: pointer;
         }
-        .nav-list li a:hover {
-            background: #004477;
-        }
-        .nav-list li a.active {
+        .nav-item:hover,.nav-item.active {
             background: #004477;
         }
         /* 主体布局 */
         .container {
-            max-width: 1250px;
+            max-width: 1200px;
             margin: 30px auto;
             padding: 0 15px;
             display: grid;
             grid-template-columns: 72% 26%;
             gap: 2%;
         }
-        /* 模块盒子 */
+        /* 通用模块 */
         .box {
             background: #fff;
             border-radius: 5px;
@@ -80,11 +72,11 @@
         .box-title {
             background: #00529B;
             color: #fff;
-            padding: 11px 18px;
+            padding: 12px 18px;
             font-size: 17px;
         }
         .box-content {
-            padding: 18px;
+            padding: 20px;
         }
         /* 新闻列表 */
         .news-list {
@@ -105,211 +97,426 @@
             color: #00529B;
             text-decoration: underline;
         }
-        .date {
+        .date-text {
             color: #777;
             font-size: 13px;
         }
-        /* 交互按钮 */
+        /* 按钮样式 */
         .service-btn {
             display: block;
+            width: 100%;
             background: #0066B3;
             color: #fff;
             text-align: center;
-            text-decoration: none;
-            padding: 10px;
+            padding: 11px;
             border-radius: 4px;
-            margin: 8px 0;
-            transition: 0.2s;
-            cursor: pointer;
+            margin: 10px 0;
             border: none;
+            cursor: pointer;
             font-size: 14px;
+            transition: 0.2s;
         }
         .service-btn:hover {
             background: #004477;
         }
-        /* 弹窗样式 */
+        /* 表单输入 */
+        input,textarea,select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        /* 页面切换 */
+        .page-content {display: none;}
+        .page-content.show {display: block;}
+        /* 弹窗 */
         .popup-mask {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0;left: 0;
+            width: 100%;height: 100%;
             background: rgba(0,0,0,0.5);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 999;
+            padding:15px;
         }
         .popup-box {
             background: #fff;
-            width: 90%;
-            max-width: 500px;
+            width: 100%;
+            max-width: 600px;
             border-radius: 6px;
-            overflow: hidden;
+            max-height: 85vh;
+            overflow-y: auto;
         }
         .popup-head {
             background: #00529B;
-            color: white;
-            padding: 12px 15px;
-            display: flex;
+            color:#fff;
+            padding:12px 18px;
+            display:flex;
             justify-content: space-between;
-            align-items: center;
+            align-items:center;
         }
         .close-btn {
-            cursor: pointer;
-            font-size: 20px;
+            font-size:22px;
+            cursor:pointer;
         }
-        .popup-body {
-            padding: 20px;
-        }
-        .popup-body input,.popup-body textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+        .popup-body {padding:20px;}
+        /* 已上传文件展示 */
+        .file-item {
+            padding:8px;
+            background:#f5f8fc;
+            margin:6px 0;
+            border-radius:4px;
         }
         /* 底部 */
         footer {
-            background: #003366;
-            color: #cce0f5;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 40px;
-            font-size: 14px;
+            background:#003366;
+            color:#cce0f5;
+            text-align:center;
+            padding:25px 15px;
+            margin-top:40px;
+            font-size:14px;
         }
         .tip-text {
-            margin-top: 18px;
-            color: #ffbbbb;
-            font-weight: 500;
-        }
-        /* 页面切换内容默认隐藏 */
-        .page-content {
-            display: none;
-        }
-        .page-content.show {
-            display: block;
+            margin-top:10px;
+            color:#ffbaba;
         }
     </style>
 </head>
 <body>
-<!-- 顶部标题 -->
+<!-- 头部 -->
 <div class="top-bar">
     <h1>海特洛市发展与异象改革委员会</h1>
-    <p>统筹发展规划 · 深化异象改革 · 调控经济运行 · 服务城市建设</p>
+    <p>政务公开 · 项目申报 · 资料上传 · 便民服务</p>
 </div>
 
-<!-- 导航菜单 点击切换页面 -->
+<!-- 导航菜单 -->
 <div class="main-nav">
     <ul class="nav-list">
-        <li><a class="nav-item active" data-page="home">首页</a></li>
-        <li><a class="nav-item" data-page="org">机构概况</a></li>
-        <li><a class="nav-item" data-page="policy">政策法规</a></li>
-        <li><a class="nav-item" data-page="plan">发展规划</a></li>
-        <li><a class="nav-item" data-page="project">项目审批</a></li>
-        <li><a class="nav-item" data-page="complain">投诉举报</a></li>
+        <li class="nav-item active" data-page="home">首页</li>
+        <li class="nav-item" data-page="orgInfo">机构概况</li>
+        <li class="nav-item" data-page="notice">政策公告</li>
+        <li class="nav-item" data 可在线上传资料、发布文章的完整版发改委官网
+单文件`index.html`，直接替换上传即可
+功能：页面切换、公告弹窗、**本地上传文件、在线发文提交**、表单交互、蓝色政务风格
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海特洛市发展与异象改革委员会</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", SimHei, sans-serif;
+        }
+        body {
+            background-color: #f4f7fa;
+            color: #333;
+            line-height: 1.8;
+        }
+        /* 顶部头部 */
+        .top-bar {
+            background: #00529B;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+        }
+        .top-bar h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .top-bar p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        /* 导航栏 */
+        .main-nav {
+            background: #0066B3;
+            border-bottom: 3px solid #004477;
+        }
+        .nav-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+        }
+        .nav-item {
+            padding: 15px 22px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .nav-item:hover,.nav-item.active {
+            background: #004477;
+        }
+        /* 主体布局 */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 72% 26%;
+            gap: 2%;
+        }
+        /* 通用模块 */
+        .box {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px #dbe4ec;
+            margin-bottom: 22px;
+            overflow: hidden;
+        }
+        .box-title {
+            background: #00529B;
+            color: #fff;
+            padding: 12px 18px;
+            font-size: 17px;
+        }
+        .box-content {
+            padding: 20px;
+        }
+        /* 新闻列表 */
+        .news-list {
+            list-style: none;
+        }
+        .news-list li {
+            padding: 10px 0;
+            border-bottom: 1px dotted #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .news-list a {
+            color: #222;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .news-list a:hover {
+            color: #00529B;
+            text-decoration: underline;
+        }
+        .date-text {
+            color: #777;
+            font-size: 13px;
+        }
+        /* 按钮样式 */
+        .service-btn {
+            display: block;
+            width: 100%;
+            background: #0066B3;
+            color: #fff;
+            text-align: center;
+            padding: 11px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .service-btn:hover {
+            background: #004477;
+        }
+        /* 表单输入 */
+        input,textarea,select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        /* 页面切换 */
+        .page-content {display: none;}
+        .page-content.show {display: block;}
+        /* 弹窗 */
+        .popup-mask {
+            position: fixed;
+            top: 0;left: 0;
+            width: 100%;height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding:15px;
+        }
+        .popup-box {
+            background: #fff;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 6px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .popup-head {
+            background: #00529B;
+            color:#fff;
+            padding:12px 18px;
+            display:flex;
+            justify-content: space-between;
+            align-items:center;
+        }
+        .close-btn {
+            font-size:22px;
+            cursor:pointer;
+        }
+        .popup-body {padding:20px;}
+        /* 已上传文件展示 */
+        .file-item {
+            padding:8px;
+            background:#f5f8fc;
+            margin:6px 0;
+            border-radius:4px;
+        }
+        /* 底部 */
+        footer {
+            background:#003366;
+            color:#cce0f5;
+            text-align:center;
+            padding:25px 15px;
+            margin-top:40px;
+            font-size:14px;
+        }
+        .tip-text {
+            margin-top:10px;
+            color:#ffbaba;
+        }
+    </style>
+</head>
+<body>
+<!-- 头部 -->
+<div class="top-bar">
+    <h1>海特洛市发展与异象改革委员会</h1>
+    <p>政务公开 · 项目申报 · 资料上传 · 便民服务</p>
+</div>
+
+<!-- 导航菜单 -->
+<div class="main-nav">
+    <ul class="nav-list">
+        <li class="nav-item active" data-page="home">首页</li>
+        <li class="nav-item" data-page="orgInfo">机构概况</li>
+        <li class="nav-item" data-page="notice">政策公告</li>
+        <li class="nav-item" data-page="upload">资料上传发文</li>
+        <li class="nav-item" data-page="complain">投诉举报</li>
     </ul>
 </div>
 
-<!-- 首页内容 -->
+<!-- 首页页面 -->
 <div class="container page-content show" id="home">
     <div class="main-left">
         <div class="box">
-            <div class="box-title">最新通知公告</div>
+            <div class="box-title">最新公告通知</div>
             <div class="box-content">
                 <ul class="news-list">
-                    <li><a onclick="openDetail('2026年度全市重点建设项目申报')">2026年度全市重点建设项目申报工作通知</a><span class="date">2026-05-21</span></li>
-                    <li><a onclick="openDetail('异象产业改革试点工作')">关于异象产业改革试点工作推进公示</a><span class="date">2026-05-20</span></li>
-                    <li><a onclick="openDetail('物价稳价保供专项')">全市物价稳价保供专项工作通知</a><span class="date">2026-05-18</span></li>
+                    <li>
+                        <a onclick="openDetail('2026年度全市重点建设项目申报工作通知')">2026年度全市重点建设项目申报工作通知</a>
+                        <span class="date-text">2026-05-21</span>
+                    </li>
+                    <li>
+                        <a onclick="openDetail('异象产业改革试点工作实施方案')">异象产业改革试点工作实施方案</a>
+                        <span class="date-text">2026-05-20</span>
+                    </li>
+                    <li>
+                        <a onclick="openDetail('全市物价稳价保供专项工作安排')">全市物价稳价保供专项工作安排</a>
+                        <span class="date-text">2026-05-18</span>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="box">
-            <div class="box-title">政策文件公示</div>
+            <div class="box-title">项目申报指南</div>
             <div class="box-content">
-                <ul class="news-list">
-                    <li><a onclick="openDetail('异象经济改革管理办法')">海特洛市异象经济改革管理办法（全文）</a><span class="date">2026-05-10</span></li>
-                </ul>
+                <p>本市2026年度重点项目现已开放申报，涵盖基建、产业、生态、科创四大领域。</p>
+                <p>申报截止时间：2026年6月20日</p>
+                <button class="service-btn" onclick="alert('进入项目申报填报页面')">立即申报项目</button>
             </div>
         </div>
     </div>
     <div class="main-right">
         <div class="box">
-            <div class="box-title">政务办事大厅</div>
+            <div class="box-title">快捷办事</div>
             <div class="box-content">
-                <button class="service-btn" onclick="alert('跳转项目申报页面')">项目在线申报</button>
-                <button class="service-btn" onclick="alert('跳转进度查询页面')">审批进度查询</button>
-                <button class="service-btn" onclick="alert('跳转文件下载页面')">政策文件下载</button>
+                <button class="service-btn" onclick="switchPage('upload')">资料上传发文</button>
+                <button class="service-btn" onclick="switchPage('complain')">投诉意见提交</button>
+                <button class="service-btn" onclick="alert('查询项目审核进度')">进度查询</button>
             </div>
         </div>
         <div class="box">
-            <div class="box-title">投诉举报入口</div>
+            <div class="box-title">温馨提示</div>
             <div class="box-content">
-                <button class="service-btn" onclick="openComplain()">立即提交投诉</button>
-                <button class="service-btn" onclick="alert('查询举报处理进度')">举报进度查询</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 机构概况页面 -->
-<div class="container page-content" id="org">
-    <div class="main-left">
-        <div class="box">
-            <div class="box-title">机构职能介绍</div>
-            <div class="box-content">
-                <p>1. 拟定全市经济社会发展中长期规划；</p>
-                <p>2. 统筹固定资产投资、项目立项审批备案；</p>
-                <p>3. 监测调控全市整体经济运行态势；</p>
-                <p>4. 监管市场物价、行政事业收费标准；</p>
-                <p>5. 推进异象领域创新改革与体制优化；</p>
-                <p>6. 受理市民咨询、投诉、意见反馈工作。</p>
+                <p>所有上传资料仅本地临时保存</p>
+                <p>正式公文请规范格式提交</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 政策法规页面 -->
-<div class="container page-content" id="policy">
+<!-- 机构概况 -->
+<div class="container page-content" id="orgInfo">
     <div class="main-left">
         <div class="box">
-            <div class="box-title">现行有效政策法规</div>
+            <div class="box-title">单位职能简介</div>
+            <div class="box-content">
+                <p>海特洛市发展与异象改革委员会统筹全市经济发展、规划编制、项目审批、产业改革、民生物价管控等工作。</p>
+                <p>主要职责：</p>
+                <p>1. 编制全市中长期发展规划与空间规划</p>
+                <p>2. 重点建设项目立项、审核、管理</p>
+                <p>3. 产业结构优化与改革试点推进</p>
+                <p>4. 市场物价调控、民生保障统筹</p>
+                <p>5. 政务公告发布、群众诉求处理</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 政策公告 -->
+<div class="container page-content" id="notice">
+    <div class="main-left">
+        <div class="box">
+            <div class="box-title">全部政策文件</div>
             <div class="box-content">
                 <ul class="news-list">
-                    <li><a onclick="openDetail('城乡发展统筹条例')">城乡发展统筹管理条例</a><span class="date">2026-04-01</span></li>
-                    <li><a onclick="openDetail('项目投资管理细则')">项目投资备案管理实施细则</a><span class="date">2026-03-15</span></li>
+                    <li>
+                        <a onclick="openDetail('2026年度全市重点建设项目申报工作通知')">2026年度全市重点建设项目申报工作通知</a>
+                        <span class="date-text">2026-05-21</span>
+                    </li>
+                    <li>
+                        <a onclick="openDetail('异象产业改革试点工作实施方案')">异象产业改革试点工作实施方案</a>
+                        <span class="date-text">2026-05-20</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 发展规划页面 -->
-<div class="container page-content" id="plan">
+<!-- 资料上传、文章发布页面 -->
+<div class="container page-content" id="upload">
     <div class="main-left">
         <div class="box">
-            <div class="box-title">城市发展规划文件</div>
+            <div class="box-title">在线上传资料 & 发布文章</div>
             <div class="box-content">
-                <ul class="news-list">
-                    <li><a onclick="openDetail">全市五年经济发展总体规划</a><span class="date">2026-01-20</span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+                <h4>一、上传本地文件</h4>
+                <input type="file" id="fileUpload" multiple>
+                <button class="service-btn" onclick="uploadFile()">确认上传文件</button>
 
-<!-- 项目审批页面 -->
-<div class="container page-content" id="project">
-    <div class="main-left">
-        <div class="box">
-            <div class="box-title">项目审批办事指南</div>
-            <div class="box-content">
-                <p>1. 线上提交项目申请材料</p>
-                <p>2. 工作人员初审资料</p>
-                <p>3. 现场核验与评审</p>
-                <p>4. 审批办结公示结果</p>
-                <br>
-                <button class="service-btn" onclick="alert('进入项目申报表单')">开始申报项目</button>
+                <h4 style="margin-top:20px">二、在线撰写发文</h4>
+                <input type="text" id="articleTitle" placeholder="请输入文章/通知标题">
+                <textarea id="articleContent" rows="8" placeholder="在此填写正文内容，可直接编辑公文、通知、报告"></textarea>
+                <button class="service-btn" onclick="publishArticle()">提交发布文章</button>
+
+                <h4 style="margin-top:20px">三、已上传文件列表</h4>
+                <div id="fileList"></div>
+                <div id="articleList"></div>
             </div>
         </div>
     </div>
@@ -319,13 +526,18 @@
 <div class="container page-content" id="complain">
     <div class="main-left">
         <div class="box">
-            <div class="box-title">投诉举报须知</div>
+            <div class="box-title">投诉意见提交</div>
             <div class="box-content">
-                <p>1. 如实填写个人信息与举报内容</p>
-                <p>2. 违规物价、项目问题、服务问题均可举报</p>
-                <p>3. 恶意虚假举报将不予受理</p>
-                <br>
-                <button class="service-btn" onclick="openComplain()">填写投诉表单</button>
+                <input type="text" id="comName" placeholder="您的姓名">
+                <input type="text" id="comPhone" placeholder="联系电话">
+                <select id="comType">
+                    <option>项目问题投诉</option>
+                    <option>服务意见建议</option>
+                    <option>物价违规举报</option>
+                    <option>其他问题反馈</option>
+                </select>
+                <textarea id="comText" rows="6" placeholder="详细描述问题内容"></textarea>
+                <button class="service-btn" onclick="submitComplain()">提交反馈</button>
             </div>
         </div>
     </div>
@@ -335,75 +547,133 @@
 <div class="popup-mask" id="detailPopup">
     <div class="popup-box">
         <div class="popup-head">
-            <span id="detailTitle">公告详情</span>
-            <span class="close-btn" onclick="closePopup()">×</span>
+            <span id="popTitle">公告详情</span>
+            <span class="close-btn" onclick="closeDetailPop()">×</span>
         </div>
-        <div class="popup-body">
-            <p id="detailContent">此处展示完整公告正文内容，包含政策要求、执行时间、相关规定、申报条件等详细信息。</p>
-        </div>
-    </div>
-</div>
-
-<!-- 投诉表单弹窗 -->
-<div class="popup-mask" id="complainPopup">
-    <div class="popup-box">
-        <div class="popup-head">
-            <span>投诉举报表单</span>
-            <span class="close-btn" onclick="closeComplainPopup()">×</span>
-        </div>
-        <div class="popup-body">
-            <input type="text" placeholder="请填写您的姓名">
-            <input type="text" placeholder="联系手机号码">
-            <textarea rows="4" placeholder="详细描述投诉举报问题"></textarea>
-            <button class="service-btn" onclick="submitComplain()">提交投诉</button>
-        </div>
+        <div class="popup-body" id="popContent"></div>
     </div>
 </div>
 
 <!-- 底部 -->
 <footer>
-    <p>海特洛市发展与异象改革委员会 版权所有 ©2026</p>
-    <p>地址：海特洛市中央大道1号政务中心A座 | 政务服务热线：010-12345678</p>
-    <p class="tip-text">温馨提示：本站所有内容均为网络娱乐创意创作，纯属虚拟模拟，切勿当真，与现实任何政府机构、部门、单位无任何关联。</p>
+    <p>海特洛市发展与异象改革委员会 版权所有</p>
+    <p class="tip-text">温馨提示：本站为模拟政务网站，所有内容仅演示使用</p>
 </footer>
 
 <script>
-// 导航页面切换
+// 页面切换
 const navItems = document.querySelectorAll('.nav-item');
 const pages = document.querySelectorAll('.page-content');
 navItems.forEach(item=>{
     item.addEventListener('click',function(){
-        let pageId = this.getAttribute('data-page');
-        navItems.forEach(nav=>nav.classList.remove('active'));
+        let pid = this.dataset.page;
+        navItems.forEach(n=>n.classList.remove('active'));
         this.classList.add('active');
-        pages.forEach(page=>page.classList.remove('show'));
-        document.getElementById(pageId).classList.add('show');
+        pages.forEach(p=>p.classList.remove('show'));
+        document.getElementById(pid).classList.add('show');
     })
 })
+function switchPage(pageId){
+    navItems.forEach(n=>n.classList.remove('active'));
+    document.querySelector(`.nav-item[data-page="${pageId}"]`).classList.add('active');
+    pages.forEach(p=>p.classList.remove('show'));
+    document.getElementById(pageId).classList.add('show');
+}
 
-// 打开公告详情
+// 公告详情内容库
+const noticeData = {
+    "2026年度全市重点建设项目申报工作通知":`
+<p style="text-indent:2em;margin-bottom:15px;">各区县人民政府，市有关部门，各有关单位：</p>
+<p style="text-indent:2em;margin-bottom:15px;">为加快城市高质量发展，现将2026年度全市重点建设项目申报相关事项通知如下。</p>
+<h3>一、申报范围</h3>
+<p style="text-indent:2em;">涵盖重大基建、产业发展、生态民生、科技创新四大类项目。</p>
+<h3>二、申报时间</h3>
+<p style="text-indent:2em;">即日起至2026年6月20日截止。</p>
+<h3>三、申报要求</h3>
+<p style="text-indent:2em;">项目前期手续完备、资金来源清晰，符合城市总体规划即可依规申报。</p>
+<h3>四、审核流程</h3>
+<p style="text-indent:2em;">区县初审→市级联审→公示发布→入库管理。</p>
+`,
+    "异象产业改革试点工作实施方案":`<p style="text-indent:2em;">为推动特色产业转型升级，本市启动产业改革试点工作，明确试点区域、扶持政策、建设任务与考核标准，助力区域经济提质增效。</p>`,
+    "全市物价稳价保供专项工作安排":`<p style="text-indent:2em;">全面规范市场物价秩序，保障民生物资供应充足稳定，严查哄抬物价、违规涨价行为，维护群众基本生活权益。</p>`
+};
+// 打开公告弹窗
 function openDetail(title){
-    document.getElementById('detailTitle').innerText = title;
+    document.getElementById('popTitle').innerText = title;
+    document.getElementById('popContent').innerHTML = noticeData[title];
     document.getElementById('detailPopup').style.display = 'flex';
 }
-// 关闭详情弹窗
-function closePopup(){
+function closeDetailPop(){
     document.getElementById('detailPopup').style.display = 'none';
 }
 
-// 打开投诉弹窗
-function openComplain(){
-    document.getElementById('complainPopup').style.display = 'flex';
+// 文件上传功能
+let fileArr = [];
+function uploadFile(){
+    let files = document.getElementById('fileUpload').files;
+    if(files.length===0){
+        alert("请先选择要上传的文件");
+        return;
+    }
+    for(let i=0;i<files.length;i++){
+        fileArr.push(files[i].name);
+    }
+    renderFileList();
+    alert("文件上传成功，已保存至列表");
+    document.getElementById('fileUpload').value = "";
 }
-// 关闭投诉弹窗
-function closeComplainPopup(){
-    document.getElementById('complainPopup').style.display = 'none';
+function renderFileList(){
+    let html = "";
+    fileArr.forEach(item=>{
+        html += `<div class="file-item">📄 ${item}</div>`;
+    });
+    document.getElementById('fileList').innerHTML = html;
 }
 
-// 提交投诉提示
+// 文章发布功能
+let articleArr = [];
+function publishArticle(){
+    let title = document.getElementById('articleTitle').value.trim();
+    let content = document.getElementById('articleContent').value.trim();
+    if(!title || !content){
+        alert("标题和正文不能为空");
+        return;
+    }
+    let now = new Date();
+    let time = now.getFullYear()+"-"+(now.getMonth()+1).toString().padStart(2,'0')+"-"+now.getDate().toString().padStart(2,'0');
+    articleArr.push({title,content,time});
+    renderArticleList();
+    alert("文章发布成功！");
+    document.getElementById('articleTitle').value = "";
+    document.getElementById('articleContent').value = "";
+}
+function renderArticleList(){
+    let html = "<div style='margin:10px 0;'><strong>已发布文章：</strong></div>";
+    articleArr.forEach((item,idx)=>{
+        html += `
+        <div class="file-item">
+            标题：${item.title}<br>
+            发布时间：${item.time}<br>
+            正文预览：${item.content.substring(0,30)}...
+        </div>`;
+    });
+    document.getElementById('articleList').innerHTML = html;
+}
+
+// 投诉提交
 function submitComplain(){
-    alert('投诉提交成功！工作人员将尽快核查处理');
-    closeComplainPopup();
+    let name = document.getElementById('comName').value.trim();
+    let phone = document.getElementById('comPhone').value.trim();
+    let type = document.getElementById('comType').value;
+    let text = document.getElementById('comText').value.trim();
+    if(!name||!phone||!text){
+        alert("请完善全部必填信息");
+        return;
+    }
+    alert("投诉提交成功！工作人员将尽快核实处理");
+    document.getElementById('comName').value="";
+    document.getElementById('comPhone').value="";
+    document.getElementById('comText').value="";
 }
 </script>
 </body>
